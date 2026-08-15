@@ -12,7 +12,7 @@ output "location_place_indices_data_source" {
 }
 output "location_place_indices_data_source_configuration" {
   description = "Map of data_source_configuration values across all location_place_indices, keyed the same as var.location_place_indices"
-  value       = { for k, v in aws_location_place_index.location_place_indices : k => v.data_source_configuration if v.data_source_configuration != null && length(v.data_source_configuration) > 0 }
+  value       = { for k, v in aws_location_place_index.location_place_indices : k => one(v.data_source_configuration) if v.data_source_configuration != null && length(v.data_source_configuration) > 0 }
 }
 output "location_place_indices_description" {
   description = "Map of description values across all location_place_indices, keyed the same as var.location_place_indices"
